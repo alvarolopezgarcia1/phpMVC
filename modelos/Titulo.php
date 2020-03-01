@@ -16,7 +16,8 @@ class Titulo
 
 
     public function __construct()
-    { }
+    {
+    }
 
 
     public function getIdDes()
@@ -63,7 +64,7 @@ class Titulo
         return $this;
     }
 
-    
+
     public function getdescripcion()
     {
         return $this->descripcion;
@@ -87,10 +88,10 @@ class Titulo
     }
 
 
-    
+
     public function getimg()
     {
-    
+
         return $this->img;
     }
     public function setimg($img)
@@ -102,58 +103,57 @@ class Titulo
 
     public static function findAll()
     {
-     
+
         $db = Database::getInstance();
         $db->query("SELECT * FROM titulo;");
         $listado = [];
-        while ($titulo = $db->getObject("Titulo")){
+        while ($titulo = $db->getObject("Titulo")) {
             array_push($listado, $titulo);
         }
         return $listado;
     }
 
-    public static function find($id):Titulo
+    public static function find(int $id):Titulo
     {
-        
+
         $db = Database::getInstance();
-        $db->query("SELECT nombre, descripcion, nomDes, img, genero FROM titulo join desarrolladora on titulo.idDes = desarrolladora.idDes
-         WHERE idVid = $id ;")  ;
+        $db->query("SELECT idVid, nombre, descripcion, nomDes, img, genero FROM titulo join desarrolladora on titulo.idDes = desarrolladora.idDes
+         WHERE idVid = $id ;");
+
+        return $db->getObject("Titulo");
+    }
+
+    public static function find2(int $id):Titulo
+    {
+        $db = Database::getInstance();
+        $db->query("SELECT * FROM titulo WHERE idVid = $id ;") ;
 
         return $db->getObject("Titulo") ;
     }
-
-    public static function find2($id):Titulo
-    {
-        $db = Database::getInstance();
-        $db->query("SELECT * FROM titulo WHERE idVid = $id ;")  ;
-
-        return $db->getObject("Titulo") ;
-    }
-
+    
     public function save()
     {
 
         $db = Database::getInstance();
-    
-        if (is_null($this->idVid)):
+
+        if (is_null($this->idVid)) :
 
             // insertamos en la base de datos
-            $db->query("INSERT INTO titulo (nombre, descripcion, genero) VALUES ('{$this->nombre}', '{$this->descripcion}', '{$this->genero}') ;") ;
+            $db->query("INSERT INTO titulo (nombre) VALUES ('{$this->nombre}') ;");
 
             // obtener el último ID
-           $this->idVid = $db->lastId() ;
-                else:
+            $this->idVid = $db->lastId();
+        else :
 
-            $db->query("UPDATE titulo SET nombre='{$this->nombre}', descripcion='{$this->descripcion}', genero='{$this->genero}' WHERE idVid={$this->idVid} ;") ;
-        endif ;
+            $db->query("UPDATE titulo SET nombre='{$this->nombre}' WHERE idVid={$this->idVid} ;");
+        endif;
 
-        return $this ;
+        return $this;
     }
 
     public function borrar()
     {
         $db = Database::getInstance();
-        $db->query("DELETE FROM titulo WHERE idVid={$this->idVid} ;") ;
+        $db->query("DELETE FROM titulo WHERE idVid={$this->idVid} ;");
     }
-
 }

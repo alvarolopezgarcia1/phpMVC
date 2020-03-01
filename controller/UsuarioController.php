@@ -1,42 +1,44 @@
 <?php
+
+//CONTROLADOR DE USUARIO
+
 require_once "BaseController.php";
 require_once "modelos/Usuario.php";
 require_once "controller/TituloController.php";
 require_once "modelos/Titulo.php";
 require_once "libs/sesion.php";
 
-//Extendemos de base Coantroler
 class UsuarioController extends BaseController
 {
-	//Heredamos de la clase padre en el constructor
+	//Heredamos de la clase padre
 	public function __construct()
 	{
 		parent::__construct();
 	}
 
+	//FUNCIONES:
+
+	//Redirige al login
 	public function redir()
 	{
 
 		echo $this->twig->render("showLogin.php.twig");
 	}
 
+	//Comprueba el estado de la sesión
 	public function estadoSesion()
 	{
 
 		$sesion = sesion::getInstance();
 
-		if ($sesion->checkActiveSession()) {
+		if ($sesion->compruebaSesion()) {
 			$data = Titulo::findAll();
 
 			$usr = $sesion->getUsuario();
 
 			$admin = $sesion->getUsuario()->getAdmin();
-			
-			if ($admin == 1)
+	
 			echo $this->twig->render("showTitulos.php.twig", (['data' => $data, 'usr' => $usr]));
-
-			if ($admin == 0)
-			echo $this->twig->render("showTitulosUsuarios.php.twig", (['data' => $data, 'usr' => $usr]));
 
 		} else {
 
@@ -44,6 +46,7 @@ class UsuarioController extends BaseController
 		}
 	}
 
+	//login
 	public function loguear()
 	{
 		$sesion = sesion::getInstance();
@@ -52,11 +55,10 @@ class UsuarioController extends BaseController
 		$email = $_POST['email'];
 		$pass =  $_POST['pass'];
 		
-		
-
 		$exist = $sesion->login($email, $pass);
 
 
+	//Comprobamos si es admin o no y redirigimos a su vista	
 		if (($exist) && ($sesion->getUsuario()->getAdmin() == true)) :
 			$data = Titulo::findAll();
 
@@ -74,13 +76,24 @@ class UsuarioController extends BaseController
 		endif;
 	}
 
+	//lista todos los usuarios
+	public function listar()
+    {
+        $data = Usuario::findAll();
+
+        echo $this->twig->render("showUsuarios.php.twig", ['data' => $data]);
+    }
+
+
+	//logout
 	public function desconectar()
 	{
 		$ses = sesion::getInstance();
-		$ses->close();
-		$ses->redirect("index.php");
+		$ses->cerrar();
+		$ses->redirecciona("index.php");
 	}
 
+	//Registra nuevo usuario
 	public function anadir()
 	{
 
@@ -123,6 +136,7 @@ class UsuarioController extends BaseController
 		endif;
 	}
 
+	//edita usuario
 	public function editar()
 	{
 		$sesion = sesion::getInstance();
@@ -140,7 +154,7 @@ class UsuarioController extends BaseController
 			$nom   = $_GET["nom"];
 			$ape   = $_GET["ape"];
 			$pass  = $_GET["pass"];
-			$fec   = !empty($_GET["fec"]) ? $_GET["fec"] : null;
+			$fec   = $_GET["fec"] ? $_GET["fec"] : null;
 
 			// actualizar los datos
 
@@ -158,4 +172,17 @@ class UsuarioController extends BaseController
 			echo $this->twig->render("showTitulos.php.twig", ['data' => $data]);
 		endif;
 	}
+	
+	//borra usuario
+	public function borrar()
+    {
+        $idt = $_GET["id"] ;
+        $usr = Usuario::find2($idt) ;
+        $usr->eliminar() ;
+
+        $data = Usuario::findAll();
+
+        echo $this->twig->render("showUsuarios.php.twig", ['data' => $data]);
+    }
+
 }

@@ -22,13 +22,7 @@ class sesion
 		return $this->usuario;
 	}
 
-	public function updateUsuario(usuario $usr) 
-	{
-
-		$this->usuario = $usr ;
-	}
-
-	public function close()
+	public function cerrar()
 	{
 		$_SESSION = [];
 
@@ -39,7 +33,6 @@ class sesion
 	{
 		session_start();
 
-		// comprobamos 
 		if (isset($_SESSION["_sesion"])) :
 			self::$instancia = unserialize($_SESSION["_sesion"]);
 		else :
@@ -47,14 +40,13 @@ class sesion
 				self::$instancia = new Sesion();
 		endif;
 
-		// devolvemos la instancia
 		return self::$instancia;
 	}
 
 	
 	public function login(string $email, string $pass): bool
 	{
-		include_once('database.php');
+		include_once('Database.php');
 
 		$db= database::getInstance();
 
@@ -62,20 +54,15 @@ class sesion
 
 		if ($db->query($sql, [$email, $pass])->rowCount() > 0) :
 
-			// rescatar la información del usuario
 			$this->usuario = $db->getObject("usuario");
-			// si el usuario es correcto, iniciamos la sesión
-			// guardamos el momento (segs.) en que se inicia
-			// la sesión
+		
 			$_SESSION["time"]    = time();
 			$_SESSION["_sesion"] = serialize(self::$instancia);
 
-			// la sesión se ha iniciado
 			return true;
 
 		endif;
 
-		// la sesión no se ha iniciado
 		return false;
 	}
 
@@ -84,20 +71,20 @@ class sesion
 		return (time() - $_SESSION["time"] > $this->time_expire);
 	}
 
-	public function isLogged(): bool
+	public function estaLogueado(): bool
 	{
 		return !empty($_SESSION);
 	}
 
-	public function checkActiveSession(): bool
+	public function compruebaSesion(): bool
 	{
-		if ($this->isLogged())
+		if ($this->estaLogueado())
 			if (!$this->isExpired()) return true;
 
 		return false;
 	}
 
-	public function redirect(string $url)
+	public function redirecciona(string $url)
 	{
 		header("Location: $url");
 		die();

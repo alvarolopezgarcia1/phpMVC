@@ -1,11 +1,13 @@
 <?php
 
+//CONTROLADOR DE TÍTULO
+
 require_once "BaseController.php";
 require_once "modelos/Titulo.php";
 require_once "libs/sesion.php";
 require_once "modelos/Usuario.php";
 
-//Extendemos de base Coantroler
+
 class TituloController extends BaseController
 {
     //Heredamos de la clase padre en el constructor
@@ -14,6 +16,9 @@ class TituloController extends BaseController
         parent::__construct();
     }
 
+    //FUNCIONES:
+ 
+    //Lista todo los títulos    
     public function listar()
     {
         $data = Titulo::findAll();
@@ -21,6 +26,7 @@ class TituloController extends BaseController
         echo $this->twig->render("showTitulos.php.twig", ['data' => $data]);
     }
 
+    //Muestra la info de un título
     public function info()
     {
     
@@ -28,32 +34,7 @@ class TituloController extends BaseController
         echo $this->twig->render("ver.php.twig", ['dat' => $dat]);
     }
 
-    public function editar()
-	{
-	
-		$dat = Titulo::find2($_GET["id"]);
-
-		if (!isset($_GET["nom"])) :
-
-			echo $this->twig->render("editTitulo.php.twig", ['dat' => $dat]);
-		else :
-
-			$nom   = $_GET["nom"];
-			$gen   = $_GET["gen"];
-			$des   = $_GET["des"];
-			
-			$dat->setnombre($nom);
-			$dat->setgenero($gen);
-			$dat->setdescripcion($des);
-		
-			$dat->save();
-
-        	$data = Titulo::findAll();
-
-			echo $this->twig->render("showTitulos.php.twig", ['data' => $data]);
-		endif;
-    }
-    
+    //Borra un título   
     public function borrar()
     {
         $idt = $_GET["id"] ;

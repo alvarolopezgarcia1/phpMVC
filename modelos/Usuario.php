@@ -139,6 +139,19 @@ require_once "libs/Database.php";
         
 		}
 
+		public static function findAll()
+		{
+	
+			$db = Database::getInstance();
+			$db->query("SELECT * FROM usuarios;");
+			$listado = [];
+			while ($usuario = $db->getObject("Usuario")) {
+				array_push($listado, $usuario);
+			}
+			return $listado;
+		}
+	
+
 		public static function find2(int $id):Usuario
 	    {
 			$db = Database::getInstance();
@@ -166,6 +179,12 @@ require_once "libs/Database.php";
 	    	endif ;
 
 	    	return $this ;
+		}
+
+		public function eliminar()
+		{
+			$db = Database::getInstance();
+			$db->query("DELETE FROM usuarios WHERE idUsu={$this->idUsu} ;");
 		}
 		
 	}

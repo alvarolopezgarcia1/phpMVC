@@ -23,8 +23,11 @@
 					<li class="nav-item active">
 						<a class="nav-link text-light" href="index.php?ope=listar&con=titulo">GAMERS</a>
 					</li>
-
-                 
+					
+					<li class="nav-item">
+						<a class="nav-link text-light" href="index.php?ope=listar&con=Usuario">Usuarios</a>
+					</li>
+                
 					<li class="nav-item">
 						<a class="nav-link text-light" href="index.php?ope=editar&con=Usuario&id={{ dat }}">Perfil</a>
 					</li>
@@ -55,7 +58,6 @@
 				<th>Carátula</th>
 				<th></th>
 				<th></th>
-				<th></th>
 			
 			
 			</thead>
@@ -64,16 +66,16 @@
 				
 				{% for titulo in data %}
 				<tr>
-					<td>{{ titulo.nombre }}</td>
+					
+					<td><a class = "text-warning"><strong>{{ titulo.nombre }}</strong></td>
 					<td>
 					{% if titulo.genero != null %}
                     {{ titulo.genero }}
                     {% else %}
-                    <a class="text-danger"><strong>No definido</strong></a>
+                    <a class="text-danger">No definido</a>
                     {% endif %}
 					<td> <img src="{{ titulo.img }}" width="110" height="150"></td>
 					<td><a href="index.php?ope=info&con=titulo&id={{ titulo.idVid }}">+ Info</a></td>
-					<td><a href="index.php?ope=editar&con=titulo&id={{ titulo.idVid }}">Editar</a></td>
 					<td><a href="index.php?ope=borrar&con=titulo&id={{ titulo.idVid }}">Borrar</a></td>
 				   
 				</tr>

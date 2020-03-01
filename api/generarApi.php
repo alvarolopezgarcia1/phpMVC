@@ -1,19 +1,17 @@
 <?php
-require_once "sesion.php";
-require_once "Database.php";
+require_once "../libs/sesion.php";
+require_once "../libs/Database.php";
 
-// obtenemos la instancia 
+
 $sesion = sesion::getInstance();
 
-// comprobar si hay una sesión activa
-if (!$sesion->checkActiveSession()) {
-    $sesion->redirect("../index.php");
+if (!$sesion->comruebaSesion()) {
+    $sesion->redirecciona("../index.php");
 }
 $db = database::getInstance();
-//recogemos la api key 
+
 $idUsuario = $sesion->getUsuario()->getIdUsu();
 $apiKEY = $db->Query("SELECT api_key FROM usuarios WHERE idUsu='$idUsuario' ;")->fetchColumn();
-//generar api
 
 if (empty($api)) {
     $apiKEY = md5($sesion->getUsuario()->getEmail() . time());
@@ -22,8 +20,6 @@ if (empty($api)) {
     $db->query($sql, [$apiKEY, $idUsu])
         or die("Ha habido algun error al generar su API KEY.");
 }
-
-
 
 ?>
 

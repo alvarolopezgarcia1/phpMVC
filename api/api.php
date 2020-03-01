@@ -1,6 +1,6 @@
 <?php
 
-include_once ("Database.php");
+include_once ("libs/Database.php");
 
 
 function get_titulo()

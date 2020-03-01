@@ -1,59 +1,67 @@
+{% extends "plantilla.base.php.twig" %}
+
 {% block titulo %}
 
 {% endblock %}
 
 {% block contenido %}
 
-		<div class="row">
+
+<body class="body">
+
+			<div class="row">
 			<div class="col-sd-12 mx-auto">
-				<img class="logo" src="img/logo.png" alt="Games" />
+				<img class="logo" src="img/logo.png" alt="logo" />
 			</div>
-		</div>
-
-		
-		<div class="row">
-			<div class="col-sd-12 mx-auto mb-5">
-				<h4>Regístrate y disfruta de todas las ventajas</h4>
 			</div>
-		</div>
 
-		<form class= "form" action ="index.php" method="get">
+		    
+            <div class="row">
+                <div class="col-sd-12 mx-auto mb-5">
+                    <h4>Regístrate y comienza a disfrutar de las ventajas</h4>
+                </div>
+            </div>
+       
+	  
+			<form class= "form-group" action ="index.php" method="get">
 			<input type="hidden" name="con" value="Usuario" />
 			<input type="hidden" name="ope" value="anadir" />
 
-			<label for="id"></label>
-			<input type="text" id="id" name="id" hidden />
+			<div class="form-group">
+            <div class="col-md-6 mx-auto">
+
+			<label class="col-form-label"  for="id"></label>
+			<input class="form-control"  type="text" id="id" name="id" hidden />
 			<br/>			
-			<label for="email">Nombre de usuario: </label>
-			<input type="text" id="Email" name="Email" />
+		    <label class="col-form-label"  for="email">Nombre de usuario: </label>
+			<input class="form-control" type="text" id="Email" name="Email" />
 			<br/>
-			<label for="nom">Nombre: </label>
-			<input type="text" id="nom" name="nom" />
+			<label class="col-form-label"  for="nom">Nombre: </label>
+			<input class="form-control" type="text" id="nom" name="nom" />
 			<br/>
-				<label for="ape">Apellidos: </label>
-			<input type="text" id="ape" name="ape" />
+			<label class="col-form-label"  for="ape">Apellidos: </label>
+			<input class="form-control"  type="text" id="ape" name="ape" />
 			<br/>
             
-		    <label for="nom">Fecha de Nacimiento: </label>
-			<input type="date" id="fec" name="fec" />
+		    <label class="col-form-label"  for="nom">Fecha de Nacimiento: </label>
+			<input class="form-control" type="date" id="fec" name="fec" />
 			<br/>		
 				
-			<label for="pass">Contraseña: </label>
-			<input type="text" id="pass" name="pass" />
+			 <label class="col-form-label" for="pass">Contraseña: </label>
+			<input class="form-control"  type="text" id="pass" name="pass" />
 			<br/>
-				<label for="pass">Confirma contraseña: </label>
-			<input type="text" id="pass2" name="pass2" />
+			<label class="col-form-label"  for="pass">Confirma contraseña: </label>
+			<input class="form-control"  type="text" id="pass2" name="pass2" />
 			<br/>
-
+            </div>
 	
-	
-			<button type="submit">Guardar</button>
+	         <div class="row form-group">
+				<div class="col-md-12 mx-auto text-center">
+					<button class="btn btn-primary w-50" type="submit">Aceptar</button>
+				</div>
+			</div>	
 		</form>
-
+	</div>
 
 		{% endblock %}
 
-	</div>
-
-</body>
-</html>
