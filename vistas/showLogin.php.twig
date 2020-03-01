@@ -1,0 +1,61 @@
+
+
+{% extends "plantilla.base.php.twig" %}
+
+{% block titulo %}
+{% endblock %}
+
+
+{% block contenido %}
+
+
+<body class="body">
+
+	
+		<div class="row">
+			<div class="col-sd-12 mx-auto">
+				<img class="logo" src="img/logo.png" alt="logo" />
+			</div>
+		</div>
+
+		<!-- formulario -->
+		<form class= "form" action ="?con=Usuario&ope=loguear" method="POST">
+        
+       
+			<div class="form-group">
+			<div class="col-md-6 mx-auto">	
+					<label class="col-form-label" for="email">Nombre de usuario:</label>
+					<input class="form-control" type="text" name="email" placeholder="nombre@games.com" required />
+	
+			</div>
+
+
+			<div class="form-group">
+			<div class="col-md-6 mx-auto">
+					<label class="col-form-label" for="email">Password:</label>
+
+					<input class="form-control" type="text" name="pass" placeholder="contraseña" required />
+				</div>
+
+				</br>
+
+			</div>
+			<div class="row form-group">
+				<div class="col-md-12 mx-auto text-center">
+					<button class="btn btn-primary w-50" type="submit">Entrar</button>
+				</div>
+			</div>	
+
+		</form>
+
+		
+			<div class="row form-group">
+			<div class="col-md-12 mx-auto text-center">
+				<a href="index.php?ope=anadir&con=Usuario" class="btn btn-secondary w-50">¿Sin cuenta? !Regístrate!</a>
+			</div>
+			</div>
+
+		</div>
+
+		
+{% endblock %}

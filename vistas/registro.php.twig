@@ -1,0 +1,59 @@
+{% block titulo %}
+
+{% endblock %}
+
+{% block contenido %}
+
+		<div class="row">
+			<div class="col-sd-12 mx-auto">
+				<img class="logo" src="img/logo.png" alt="Games" />
+			</div>
+		</div>
+
+		
+		<div class="row">
+			<div class="col-sd-12 mx-auto mb-5">
+				<h4>Regístrate y disfruta de todas las ventajas</h4>
+			</div>
+		</div>
+
+		<form class= "form" action ="index.php" method="get">
+			<input type="hidden" name="con" value="Usuario" />
+			<input type="hidden" name="ope" value="anadir" />
+
+			<label for="id"></label>
+			<input type="text" id="id" name="id" hidden />
+			<br/>			
+			<label for="email">Nombre de usuario: </label>
+			<input type="text" id="Email" name="Email" />
+			<br/>
+			<label for="nom">Nombre: </label>
+			<input type="text" id="nom" name="nom" />
+			<br/>
+				<label for="ape">Apellidos: </label>
+			<input type="text" id="ape" name="ape" />
+			<br/>
+            
+		    <label for="nom">Fecha de Nacimiento: </label>
+			<input type="date" id="fec" name="fec" />
+			<br/>		
+				
+			<label for="pass">Contraseña: </label>
+			<input type="text" id="pass" name="pass" />
+			<br/>
+				<label for="pass">Confirma contraseña: </label>
+			<input type="text" id="pass2" name="pass2" />
+			<br/>
+
+	
+	
+			<button type="submit">Guardar</button>
+		</form>
+
+
+		{% endblock %}
+
+	</div>
+
+</body>
+</html>
