@@ -20,7 +20,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link text-light" href="index.php?ope=listar&con=titulo">GAMERS</a>
+						<a class="nav-link text-light" href="index.php?ope=listar&con=Titulo">GAMERS</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link text-danger" href="index.php?ope=desconectar&con=Usuario">Salir</a>
@@ -31,10 +31,7 @@
 
 		</div>	
 
-
-	
-
-        <div class="card mb-3 mx-auto" style="max-width: 50rem;">
+	   <div class="card mb-3 mx-auto" style="max-width: 50rem;">
             <div class="row no-gutters align-items-center h-100">
                 <div class="col-md-6">
                     <img src="{{ dat.getimg }}" class="card-img">
@@ -48,4 +45,19 @@
             </div>
         </div>
 		
+{% endblock %}
+{% block footer %}
+	<footer>
+        <div class="footer">
+            <br></br>
+            <br></br>
+
+            Autor: Álvaro López </br>
+                <a href="https://twitter.com/ElRincondeVaro" class="btn btn-link">Sígueme en Twitter</a>
+
+            </p>
+
+        </div>
+
+</footer>
 {% endblock %}

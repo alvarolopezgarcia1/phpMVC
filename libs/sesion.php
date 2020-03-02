@@ -1,8 +1,8 @@
 <?php
 
 require_once("Database.php");
-require_once("modelos/Usuario.php");
-require_once("controller/UsuarioController.php");
+require_once("C:/xampp3/htdocs/mvc/modelos/Usuario.php");
+require_once("C:/xampp3/htdocs/mvc/controller/UsuarioController.php");
 
 class sesion
 {

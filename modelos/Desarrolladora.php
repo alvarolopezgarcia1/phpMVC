@@ -8,7 +8,8 @@ class Desarrolladora
     private $Fec_Creacion;
 
     public function __construct()
-    { }
+    {
+    }
 
 
     public function getIdDes()
@@ -17,30 +18,32 @@ class Desarrolladora
     }
     public function setIdDes($idDes)
     {
-        $this->idUsu = $idDes;
+        $this->idDes = $idDes;
 
         return $this;
     }
 
-    public function getFec_Creacion()
-    {
-        return $this->Fec_Creacion;
-    }
-    public function setFec_Creacion($Fec_Creacion)
-    {
-        $this->Fec_Creacion = $Fec_Creacion;
-
-        return $this;
-    }
 
     public function getnomDes()
     {
-        return $this->nombre;
+        return $this->nomDes;
     }
-    public function setnombre($nombre)
+    public function setnomDes($nomDes)
     {
-        $this->idUsu = $nombre;
+        $this->nomDes = $nomDes;
 
         return $this;
+    }
+
+    public static function findAll()
+    {
+
+        $db = Database::getInstance();
+        $db->query("SELECT * FROM desarrolladora;");
+        $listado = [];
+        while ($desarrolladora = $db->getObject("Desarrolladora")) {
+            array_push($listado, $desarrolladora);
+        }
+        return $listado;
     }
 }

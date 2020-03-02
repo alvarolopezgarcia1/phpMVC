@@ -3,10 +3,10 @@
 //CONTROLADOR DE USUARIO
 
 require_once "BaseController.php";
-require_once "modelos/Usuario.php";
-require_once "controller/TituloController.php";
-require_once "modelos/Titulo.php";
-require_once "libs/sesion.php";
+require_once "C:/xampp3/htdocs/mvc/modelos/Usuario.php";
+require_once "C:/xampp3/htdocs/mvc/controller/TituloController.php";
+require_once "C:/xampp3/htdocs/mvc/modelos/Titulo.php";
+require_once "C:/xampp3/htdocs/mvc/libs/sesion.php";
 
 class UsuarioController extends BaseController
 {
@@ -37,9 +37,8 @@ class UsuarioController extends BaseController
 			$usr = $sesion->getUsuario();
 
 			$admin = $sesion->getUsuario()->getAdmin();
-	
-			echo $this->twig->render("showTitulos.php.twig", (['data' => $data, 'usr' => $usr]));
 
+			echo $this->twig->render("showTitulos.php.twig", (['data' => $data, 'usr' => $usr]));
 		} else {
 
 			$this->redir();
@@ -50,39 +49,39 @@ class UsuarioController extends BaseController
 	public function loguear()
 	{
 		$sesion = sesion::getInstance();
-	
-				
+
+
 		$email = $_POST['email'];
 		$pass =  $_POST['pass'];
-		
+
 		$exist = $sesion->login($email, $pass);
 
 
-	//Comprobamos si es admin o no y redirigimos a su vista	
+		//Comprobamos si es admin o no y redirigimos a su vista	
 		if (($exist) && ($sesion->getUsuario()->getAdmin() == true)) :
 			$data = Titulo::findAll();
 
 			echo $this->twig->render("showTitulos.php.twig", ['data' => $data]);
 
-		elseif (($exist) && ($sesion->getUsuario()->getAdmin() == false)) :	
+		elseif (($exist) && ($sesion->getUsuario()->getAdmin() == false)) :
 			$data = Titulo::findAll();
 
 			echo $this->twig->render("showTitulosUsuarios.php.twig", ['data' => $data]);
-	
+
 		else :
 			$this->redir();
-		
+
 
 		endif;
 	}
 
 	//lista todos los usuarios
 	public function listar()
-    {
-        $data = Usuario::findAll();
+	{
+		$data = Usuario::findAll();
 
-        echo $this->twig->render("showUsuarios.php.twig", ['data' => $data]);
-    }
+		echo $this->twig->render("showUsuarios.php.twig", ['data' => $data]);
+	}
 
 
 	//logout
@@ -113,25 +112,25 @@ class UsuarioController extends BaseController
 
 			if ($pass == $pass2) :
 
-			$usu = new Usuario();
-			$usu->setNombre($nom);
-			$usu->setEmail($Email);
-			$usu->setApellidos($ape);
-			$usu->setFecNacimiento($fec);
-			$usu->setPass($pass);
+				$usu = new Usuario();
+				$usu->setNombre($nom);
+				$usu->setEmail($Email);
+				$usu->setApellidos($ape);
+				$usu->setFecNacimiento($fec);
+				$usu->setPass($pass);
 
-			//insertamos en bd.
-			$usu->save();
+				//insertamos en bd.
+				$usu->save();
 
-			$data = Titulo::findAll();
+				$data = Titulo::findAll();
 
-			echo $this->twig->render("showLogin.php.twig");
-		
-		else :
+				echo $this->twig->render("showLogin.php.twig");
 
-			echo $this->twig->render("registro.php.twig");
-			echo  "<br>Las contraseñas no coinciden, intentelo de nuevo";
-		endif;
+			else :
+
+				echo $this->twig->render("registro.php.twig");
+				echo  "<br>Las contraseñas no coinciden, intentelo de nuevo";
+			endif;
 
 		endif;
 	}
@@ -169,20 +168,33 @@ class UsuarioController extends BaseController
 
 			$data = Titulo::findAll();
 
-			echo $this->twig->render("showTitulos.php.twig", ['data' => $data]);
+			if ($sesion->getUsuario()->getAdmin() == true) :
+				$data = Titulo::findAll();
+
+				echo $this->twig->render("showTitulos.php.twig", ['data' => $data]);
+
+			elseif ($sesion->getUsuario()->getAdmin() == false) :
+				$data = Titulo::findAll();
+
+				echo $this->twig->render("showTitulosUsuarios.php.twig", ['data' => $data]);
+
+			else :
+				$this->redir();
+
+
+			endif;
 		endif;
 	}
-	
+
 	//borra usuario
 	public function borrar()
-    {
-        $idt = $_GET["id"] ;
-        $usr = Usuario::find2($idt) ;
-        $usr->eliminar() ;
+	{
+		$idt = $_GET["id"];
+		$usr = Usuario::find2($idt);
+		$usr->eliminar();
 
-        $data = Usuario::findAll();
+		$data = Usuario::findAll();
 
-        echo $this->twig->render("showUsuarios.php.twig", ['data' => $data]);
-    }
-
+		echo $this->twig->render("showUsuarios.php.twig", ['data' => $data]);
+	}
 }

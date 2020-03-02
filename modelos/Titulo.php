@@ -1,19 +1,15 @@
 <?php
 
-require_once "libs/Database.php";
+require_once "C:/xampp3/htdocs/mvc/libs/Database.php";
 
 class Titulo
 {
-
     private $idDes;
     private $idVid;
     private $nombre;
     private $img;
-    private $fec_Creacion;
     private $genero;
     private $descripcion;
-
-
 
     public function __construct()
     {
@@ -26,7 +22,7 @@ class Titulo
     }
     public function setIdDes($idDes)
     {
-        $this->idUsu = $idDes;
+        $this->idDes = $idDes;
 
         return $this;
     }
@@ -37,18 +33,7 @@ class Titulo
     }
     public function setidVid($idVid)
     {
-        $this->idUsu = $idVid;
-
-        return $this;
-    }
-
-    public function getfec_Creacion()
-    {
-        return $this->fec_Creacion;
-    }
-    public function setfec_Creacion($fec_Creacion)
-    {
-        $this->fec_Creacion = $fec_Creacion;
+        $this->idVid = $idVid;
 
         return $this;
     }
@@ -59,11 +44,10 @@ class Titulo
     }
     public function setnombre($nombre)
     {
-        $this->idUsu = $nombre;
+        $this->nombre = $nombre;
 
         return $this;
     }
-
 
     public function getdescripcion()
     {
@@ -71,7 +55,7 @@ class Titulo
     }
     public function setdescripcion($descripcion)
     {
-        $this->idUsu = $descripcion;
+        $this->descripcion = $descripcion;
 
         return $this;
     }
@@ -82,12 +66,10 @@ class Titulo
     }
     public function setgenero($genero)
     {
-        $this->idUsu = $genero;
+        $this->genero = $genero;
 
         return $this;
     }
-
-
 
     public function getimg()
     {
@@ -96,7 +78,7 @@ class Titulo
     }
     public function setimg($img)
     {
-        $this->idUsu = $img;
+        $this->img = $img;
 
         return $this;
     }
@@ -113,7 +95,7 @@ class Titulo
         return $listado;
     }
 
-    public static function find(int $id):Titulo
+    public static function find(int $id): Titulo
     {
 
         $db = Database::getInstance();
@@ -123,14 +105,14 @@ class Titulo
         return $db->getObject("Titulo");
     }
 
-    public static function find2(int $id):Titulo
+    public static function find2(int $id): Titulo
     {
         $db = Database::getInstance();
-        $db->query("SELECT * FROM titulo WHERE idVid = $id ;") ;
+        $db->query("SELECT * FROM titulo WHERE idVid = $id ;");
 
-        return $db->getObject("Titulo") ;
+        return $db->getObject("Titulo");
     }
-    
+
     public function save()
     {
 
@@ -138,14 +120,13 @@ class Titulo
 
         if (is_null($this->idVid)) :
 
-            // insertamos en la base de datos
             $db->query("INSERT INTO titulo (nombre) VALUES ('{$this->nombre}') ;");
 
-            // obtener el último ID
             $this->idVid = $db->lastId();
         else :
 
-            $db->query("UPDATE titulo SET nombre='{$this->nombre}' WHERE idVid={$this->idVid} ;");
+            $db->query("UPDATE titulo SET nombre='{$this->nombre}', genero='{$this->genero}', 
+            descripcion='{$this->descripcion}', idDes={$this->idDes} WHERE idVid={$this->idVid};");
         endif;
 
         return $this;

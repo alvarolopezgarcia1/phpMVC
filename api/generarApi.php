@@ -5,7 +5,7 @@ require_once "../libs/Database.php";
 
 $sesion = sesion::getInstance();
 
-if (!$sesion->comruebaSesion()) {
+if (!$sesion->compruebaSesion()) {
     $sesion->redirecciona("../index.php");
 }
 $db = database::getInstance();

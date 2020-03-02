@@ -32,44 +32,47 @@
 		</div>
 	
 		<div class="row">
-			<div class="col-sd-12 mx-auto">
-				<img class="logo" src="img/logo.png" alt="logo" />
+			<div class="col-sd-6 mx-auto">
+				<img class="logo" src= "{{ dat.getimg }}" class="card-img" alt="logo" width="400" height="600">/>
 			</div>
 		</div>
 
-		    
+		    <br><br>
             <div class="row">
                 <div class="col-sd-12 mx-auto mb-5">
-                    <h4>Modifica tu perfil personal</h4>
+                    <h4>Modifica : {{ dat.getnombre }}</h4>
                 </div>
             </div>
 
-		    <form class = "form-group" action="index.php" method="get">
-			<input type="hidden" name="con" value="Usuario" />
+		<form class = "form-group" action="index.php" method="get">
+			<input type="hidden" name="con" value="titulo" />
 			<input type="hidden" name="ope" value="editar" />
 
 			<div class="form-group">
 			<div class="col-md-6 mx-auto">	
 		    <label class="col-form-label"  for="id">ID: </label>
-			<input class="form-control"  type="text" id="id" name="id" value="{{ dat.getIdUsu }}" readonly />
+			<input class="form-control"  type="text" id="id" name="id" value="{{ dat.getidVid }}" readonly />
 			<br/>	
-			<label class="col-form-label"  for="nom">Email: </label>
-			<input class="form-control"  type="text" id="email" name="email" value="{{ dat.getEmail }}" />
-			<br/>
 		     <label class="col-form-label"  for="nom">Nombre: </label>
-			<input class="form-control" type="text" id="nom" name="nom" value="{{ dat.getNombre }}" />
+			<input class="form-control" type="text" id="nom" name="nom" value="{{ dat.getnombre }}" />
 			<br/>
-			<label class="col-form-label"  for="fec">Apellidos: </label>
-			<input class="form-control" type="text" id="ape" name="ape" value="{{ dat.getApellidos }}" />
+                <label class="col-form-label"  for="nom">Género: </label>
+			<input class="form-control" type="text" id="gen" name="gen" value="{{ dat.getgenero }}" />
 			<br/>
-		    <label class="col-form-label"  for="fec">Fecha de Nacimiento: </label>
-			<input class="form-control" type="date" id="fec" name="fec" value="{{ dat.getFecNacimiento }}" />
+		    <label class="col-form-label"  for="des">Descripción </label>
+			<textarea id="des" id = "des" name="des" style= "width: 600px" "height: 1000px"> {{ dat.getdescripcion }}</textarea>
 			<br/>
-			<label class="col-form-label"  for="fec">pass: </label>
-			<input class="form-control" type="text" id="pass" name="pass" value="{{ dat.getPass }}" />
-			<br/>
-			</div>		
-			
+			<label for="desa"><strong>Desarrolladora: </strong></label>
+        	<select id="desa" name="desa">
+            {% for item in dat2 %}
+			{% if item.IdDes == dat.IdDes %}
+                <option selected="true" value="{{ item.IdDes }}">{{ item.nomDes }}</option>
+			{% else %}
+				<option value="{{ item.IdDes }}">{{ item.nomDes }}</option>
+			{% endif %}	
+            {% endfor %}
+        	</select>
+			<br><br>
 	        <div class="row form-group">
 				<div class="col-md-12 mx-auto text-center">
 					<button class="btn btn-primary w-50" type="submit">Aceptar</button>
@@ -81,8 +84,8 @@
 	
 {% endblock %}
 
-
 {% block footer %}	
+
 <footer>
         <div class="footer">
             <br></br>
@@ -96,4 +99,5 @@
         </div>
 
 </footer>
+
 {% endblock %}

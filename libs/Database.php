@@ -1,8 +1,6 @@
 <?php
 class Database
 {
-
-
 	protected $_config;
 	private $dbc;
 	private $result;
@@ -45,7 +43,6 @@ class Database
 			}
 		}
 	}
-
 
 	public function query($sql, $parameters = [])
 	{

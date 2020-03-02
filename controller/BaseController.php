@@ -2,7 +2,7 @@
 
 //CONTROLADOR BASE
 
-require_once "vendor/autoload.php" ;
+require_once "C:/xampp3/htdocs/mvc/vendor/autoload.php" ;
     class BaseController
     {
         protected $twig;
@@ -15,4 +15,3 @@ require_once "vendor/autoload.php" ;
         }
         
     }
-    ?>

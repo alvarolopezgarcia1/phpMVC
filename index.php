@@ -12,7 +12,3 @@
 	$controller = new $nom();
 
 	$controller->$oper();
-
-?>
-
-
