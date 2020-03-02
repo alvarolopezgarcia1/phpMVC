@@ -8,4 +8,4 @@ Aplicacíon sobre videojuegos, creada en PHP, con acceso a base de datos, utiliz
 y gestionar la lista de usuarios.
 El usuario común puede acceder a la información, registrarse y editar su perfil una vez está registrado.</p>
 
-![atributos](https://github.com/alvarolopezgarcia1/phpMVC/mvc/bd/bd.PNG)
+![atributos](https://github.com/alvarolopezgarcia1/phpMVC/blob/master/BD/bd.PNG)
