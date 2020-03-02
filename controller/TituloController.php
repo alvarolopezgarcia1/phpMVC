@@ -3,10 +3,10 @@
 //CONTROLADOR DE TÍTULO
 
 require_once "BaseController.php";
-require_once "C:/xampp3/htdocs/mvc/modelos/Titulo.php";
-require_once "C:/xampp3/htdocs/mvc/libs/sesion.php";
-require_once "C:/xampp3/htdocs/mvc/modelos/Usuario.php";
-require_once "C:/xampp3/htdocs/mvc/modelos/Desarrolladora.php";
+require_once "modelos/Titulo.php";
+require_once "libs/sesion.php";
+require_once "modelos/Usuario.php";
+require_once "modelos/Desarrolladora.php";
 
 class TituloController extends BaseController
 {

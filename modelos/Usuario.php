@@ -1,5 +1,5 @@
 <?php
-require_once "C:/xampp3/htdocs/mvc/libs/Database.php";
+require_once "libs/Database.php";
 
 class Usuario
 {

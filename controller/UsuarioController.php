@@ -3,10 +3,10 @@
 //CONTROLADOR DE USUARIO
 
 require_once "BaseController.php";
-require_once "C:/xampp3/htdocs/mvc/modelos/Usuario.php";
-require_once "C:/xampp3/htdocs/mvc/controller/TituloController.php";
-require_once "C:/xampp3/htdocs/mvc/modelos/Titulo.php";
-require_once "C:/xampp3/htdocs/mvc/libs/sesion.php";
+require_once "modelos/Usuario.php";
+require_once "controller/TituloController.php";
+require_once "modelos/Titulo.php";
+require_once "libs/sesion.php";
 
 class UsuarioController extends BaseController
 {
