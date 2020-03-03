@@ -1,6 +1,6 @@
 <h1>Gamers con MVC</h1>
 
-Aplicacíon sobre videojuegos, creada en PHP, con acceso a base de datos, utilizando MVC y Twig. 
+Aplicacíon sobre videojuegos, creada en PHP, con acceso a base de datos, utilizando el patrón MVC y motor de plantillas Twig. 
 
 <h2>Descripción</h2>
 
