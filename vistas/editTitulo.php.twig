@@ -33,7 +33,7 @@
 	
 		<div class="row">
 			<div class="col-sd-6 mx-auto">
-				<img class="logo" src= "{{ dat.getimg }}" class="card-img" alt="logo" width="400" height="600">/>
+				<img class="logo" src= "{{ dat.getimg }}" class="card-img" alt="logo" width="400" height="600">
 			</div>
 		</div>
 
@@ -59,8 +59,8 @@
                 <label class="col-form-label"  for="nom">Género: </label>
 			<input class="form-control" type="text" id="gen" name="gen" value="{{ dat.getgenero }}" />
 			<br/>
-		    <label class="col-form-label"  for="des">Descripción </label>
-			<textarea id="des" id = "des" name="des" style= "width: 600px" "height: 1000px"> {{ dat.getdescripcion }}</textarea>
+		    <label class="col-form-label"  for="des">Descripción </label><br>
+			<textarea id="des" class="form-control" id = "des" name="des"> {{ dat.getdescripcion }}</textarea>
 			<br/>
 			<label for="desa"><strong>Desarrolladora: </strong></label>
         	<select id="desa" name="desa">
