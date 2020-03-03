@@ -8,10 +8,10 @@ Aplicacíon sobre videojuegos, creada en PHP, con acceso a base de datos, utiliz
 El usuario común puede acceder a la información, registrarse y editar su perfil una vez está registrado.</p>
 
 <h2>Acceder como administrador</h2>
-Por defecto todos los nuevos usuarios seran usuarios normales, pero hay un administrador creado con estas credenciales para poder probar las funcionalidades de la web al completo:
+<p>Por defecto todos los nuevos usuarios seran usuarios normales, pero hay un administrador creado con estas credenciales para poder probar las funcionalidades de la web al completo:</p>
 
-. Usuario: admin@gmail.com
-. Pass: admin
+- Usuario: admin@gmail.com
+- Pass: admin
 
 *Una vez dentro podremos modificar estos datos.
 
